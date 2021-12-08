@@ -2,16 +2,16 @@
 
 Site d'achats et de vente de voiture
 
-##Installer le projet
+## Installer le projet  
 Utiliser votre IDE pour lancer le projet à la racine = Répertoire **/projet_web**   
-Lancer la commande suivante pour lancer le serveur. 
+Lancer la commande suivante pour lancer le serveur.  
 ```shell
 symfony server:start
 ```
 
-##Commande à lancer pour mettre en place la BD
+## Commande à lancer pour mettre en place la BD  
 
-Ouvrir une invite de commande et lancer les commandes suivantes :
+Ouvrir une invite de commande et lancer les commandes suivantes :  
 ```shell
 php bin/console doctrine:query:sql "DROP TABLE IF EXISTS billing, car, user"  
 php bin/console doctrine:migrations:migrate  
@@ -19,7 +19,7 @@ php bin/console doctrine:schema:update  --force
 php bin/console doctrine:fixtures:load
 ```
 
-##Login pour accéder aux services
+## Login pour accéder aux services  
 - **Admin**  
   - email : laurent.dupont@gmail.fr  
   - mdp : ilie123
@@ -32,7 +32,7 @@ php bin/console doctrine:fixtures:load
   - email : savory.dupont@gmail.fr  
   - mdp : savsav40
 
-##Auteurs
+## Auteurs
 Ibrahime Ahbib  
 Laurent Ngeth  
 Yacine Bettayeb  
