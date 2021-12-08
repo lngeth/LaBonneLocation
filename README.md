@@ -21,7 +21,7 @@ php bin/console doctrine:fixtures:load
 
 ## Login pour accéder aux services  
 - **Admin**  
-  - email : laurent.dupont@gmail.fr  
+  * email : laurent.dupont@gmail.fr  
   - mdp : ilie123
 
 - **Loueur**  
