@@ -1,6 +1,7 @@
 # LaBonneLocation
 
-Site d'achats et de vente de voiture
+Projet de S3 du module de Programmation Web (PWEB) du DUT informatique 2ème année de l'IUT Descartes.  
+**Concept** : Site de location de vente pour entreprises.
 
 ## Installer le projet  
 Utiliser votre IDE pour lancer le projet à la racine = Répertoire **/projet_web**   
