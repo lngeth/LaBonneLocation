@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title 'Dashboard Client' %}
+
+{% block body %}
+    <div class="mt-4">
+        <div class="d-flex">
+            <div class="p-3 col-lg-2 navbar-dark bg-dark text-white mt-2" style="min-height: 100vh;">
+                {% if app.user.role == 'client' %}
+                    {% include('dashboard/client/sidebarClient.html.twig') %}
+                {% else %}
+                    {% include('dashboard/renter/sidebarRenter.html.twig') %}
+                {% endif %}
+            </div>
+            <div class="p-2 flex-fill">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

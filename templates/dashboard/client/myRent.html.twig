@@ -1,0 +1,70 @@
+{% extends('dashboard/index.html.twig') %}
+
+{% block title %}Mes locations{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center text-uppercase">Liste de mes locations :</h1>
+        {% if msgError is defined %}
+            <div class="text-danger text-center mt-5">
+                {{ msgError }} <br>
+                <a href="{{ path('panier_client') }}">Je veux valider mes locations</a> ou <a href="{{ path('show_my_rented_cars') }}">Retour à mes voitures</a>
+            </div>
+        {% elseif msgSuccess is defined %}
+            <div class="text-success text-center mt-5">
+                {{ msgSuccess }}   <a href="{{ path('show_my_rented_cars') }}">Retour à mes voitures</a>
+            </div>
+        {% endif %}
+        {% if carsRented is defined %}
+            <div class="row mt-lg-4">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Type et modèle</th>
+                        <th>Caractéristiques</th>
+                        <th>Date début</th>
+                        <th>Date fin</th>
+                        <th>prix au jour</th>
+                        <th>prix total</th>
+                        <th>Cliquer + infos</th>
+                        <th class="text-center">Rendre la voiture</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for carRented in carsRented %}
+                        <tr {% if carRented.paid == 1 and carRented.returned == 1 %} class="table-secondary" {% endif %}>
+                            <td class="">{{ carRented.idCar.type }}</td>
+                            <td>
+                                <div><span class="text-secondary">Moteur : </span>{{ carRented.idCar.datasheet.motor }}</div>
+                                <div><span class="text-secondary">Boite de vitesse : </span>{{ carRented.idCar.datasheet.vitesse }}</div>
+                                <div><span class="text-secondary">Nombre de siège : </span>{{ carRented.idCar.datasheet.nbSeat }}</div>
+                            </td>
+                            <td>{{ carRented.startDate | date('d/m/Y') }}</td>
+                            <td>{{ carRented.endDate | date('d/m/Y') }}</td>
+                            <td>{{ carRented.idCar.amount }}€</td>
+                            <td class="fw-bold">{{ carRented.price }}€</td>
+                            <td>
+                                <a href="{{ path('car_show', {id : carRented.idCar.id }) }}">
+                                    <img src="{{ asset('assets/images/'~carRented.idCar.image) }}" width="100px" class="img-fluid" alt="{{ carRented.idCar.image }}">
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                {% if carRented.paid == 1 and carRented.returned == 1 %}
+                                    <span class="text-uppercase">Rendu</span>
+                                {% else %}
+                                    <a href="{{ path('dashboard_return_car', {id : carRented.id }) }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                                            <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                                        </svg>
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% block title %}Dashboard Administrateur{% endblock %}
+
+
+{% block body %}
+    <div>
+        <div class="container mt-5">
+            <div class="mt-3">
+                <h1>Bonjour {{ app.user.name }}</h1>
+                <p>Bilan de votre site :</p>
+            </div>
+
+            <div class="mt-4">
+                <div class="row my-4">
+                    <div class="col-4">
+                        <div class="card bg-dark" style="max-width: 18rem;">
+                            <div class="card-body text-center">
+                                <a href="#" class="text-decoration-none">
+                                    <div class="mx-auto">
+                                        <h6 class="text-white ">Nombre de voiture louées au total</h6>
+                                        <h2 class="text-white text-bold"></h2>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card bg-dark" style="max-width: 18rem;">
+                            <div class="card-body text-center">
+                                <div class="mx-auto">
+                                    <h6 class="text-white ">Nombre de voitures retournées au total</h6>
+                                    <h2 class="text-white text-bold"></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card bg-dark" style="max-width: 18rem;">
+                            <div class="card-body text-center">
+                                <div class="mx-auto">
+                                    <h6 class="text-white ">Nombre de voitures disponibles au total</h6>
+                                    <h2 class="text-white text-bold">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-4">
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card bg-dark" style="max-width: 18rem;">
+                            <div class="card-body text-center">
+                                <div class="mx-auto">
+                                    <h6 class="text-white ">Montant total des locations au total</h6>
+                                    <h2 class="text-white text-bold">€</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

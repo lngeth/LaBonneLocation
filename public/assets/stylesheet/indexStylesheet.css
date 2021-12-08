@@ -1,0 +1,14 @@
+#scrollNav {
+    top: 0;
+    color: white;
+    transition: top 0.5s;
+}
+
+.navLink {
+    color: white;
+}
+
+.navLink:hover {
+    color: #00a3e0;
+    border-bottom: thick solid #00a3e0;
+}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row">
+            <h1 class="text-center mt-5">Inscription</h1>
+        </div>
+        <div class="row d-flex justify-content-center">
+
+            <div class="p-5 contact-form col-5">
+                <div class="form-group">
+                    {{ form_start(form) }}
+                    {{ form_row(form.name, {'label': 'Nom d\'utilisateur','attr': {'placeholder': 'Jean Dubois'}}) }}
+                </div>
+                <div class="form-group mt-2">
+                    {{ form_row(form.email, {'label': 'Adresse email', 'attr': {'placeholder': 'mavoiture@gmail.com'}}) }}
+                </div>
+                <div class="form-group mt-2">
+                    {{ form_row(form.password, {'label': 'Mot de passe'}) }}
+                    <span class="fst-italic text-danger" style="font-size: 12px;">8 caractères minimum, 1 majuscule et 1 minuscule, un chiffre et un caractère spécial</span>
+                </div>
+                <div class="form-group mt-2">
+                    {{ form_row(form.confirm_password, {'label': 'Confirmation du mot de passe'}) }}
+                </div>
+                <div class="form-group mt-2">
+                    {{ form_row(form.role) }}
+                </div>
+                <div class="form-group mt-3 text-center">
+                    <input type="submit" class="btn btn-success" value="S'inscrire">
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

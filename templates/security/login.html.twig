@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Identification{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center" style="padding-top: 100px;">Identification</h1>
+<div class="container pb-5 ">
+    <div class="bg-light mt-5 d-flex justify-content-center">
+        <form action="{{ path('security_login') }}" method="post">
+            <div>
+                <input placeholder="labonneallocation@outlook.com" type="text" name="_username" value="{{ last_username }}" class="m-3" required>
+            </div>
+            <div>
+                <input placeholder="Mot de passe" type="password" name="_password" class="m-3" required>
+            </div>
+            {% if error %}
+                <div class="text-danger">Identifiant ou mot de passe invalide</div>
+            {% endif %}
+            <div>
+
+            </div>
+            <input type="checkbox" id="remember_me" name="_remember_me" checked/>
+            <label for="remember_me">Se souvenir de moi</label>
+            <div class="d-flex justify-content-around p-2 mb-2">
+                <input type="submit" class="btn btn-lg btn-success" value="valider">
+            </div>
+            <a href="" class="text-secondary d-flex justify-content-center m-2">mot de passe oublié</a>
+            <a href="{{ path('security_registration') }}" class="text-secondary d-flex justify-content-center m-2">pas encore inscrit ?</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

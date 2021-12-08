@@ -1,0 +1,101 @@
+{% extends('dashboard/index.html.twig') %}
+
+{% block title %}Factures{% endblock %}
+
+{% block content %}
+    <h1 class="mt-lg-5 text-center">Facturation</h1>
+    {% if clients is not empty %}
+    <div class="mt-5">
+        <div class="d-flex justify-content-center">
+            <nav aria-label="">
+                <ul class="pagination">
+                    <li class="page-item disabled"><a class="page-link" href="#">Par mois :</a></li>
+                    <li class="page-item"><a class="page-link" href="{{ path('show_month_bill') }}">Pour le mois</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">Par client :</a></li>
+                    {% for client in clients %}
+                        <li class="page-item"><a class="page-link" href="{{ path('show_bill', {id:client.idUser.id}) }}">{{ client.idUser.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    {% else %}
+        <div class="my-5">
+            Vous n'avez aucun client.
+        </div>
+    {% endif %}
+    {% if bills is defined %}
+    <div class="d-flex justify-content-center mt-3">
+        <div class="w-75">
+            <div class="border-dark border rounded-1" style="padding: 5%;">
+                <div class="d-flex justify-content-center my-3">
+                    <span class="text-uppercase">La bonne location</span>
+                </div>
+                <div class="container my-5">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-lg-4">
+                            <div class="fw-bold">Vendeur :</div>
+                            <div class="text-uppercase">{{ owner.name }}</div>
+                            <div class="mt-2">{{ owner.email }}</div>
+                        </div>
+                        {% if clientFacture is defined %}
+                            <div class="col-lg-4">
+                                <div class="fw-bold">Facturé à :</div>
+                                <div class="text-uppercase">{{ clientFacture.name }}</div>
+                                <div class="mt-2">{{ clientFacture.email }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="row mt-5">
+                        <div class="fw-bold">Objet : Facture location de véhicule</div>
+                    </div>
+                    <div class="row mt-4">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>n°</th>
+                                <th>Désignation</th>
+                                {% if clientFacture is not defined %}
+                                    <th>Loué par</th>
+                                {% endif %}
+                                <th>Nombre de jour loué</th>
+                                <th>Prix au jour</th>
+                                <th>Prix total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% set total = 0 %}
+                            {% set id = 0 %}
+                            {% for bill in bills %}
+                                <tr>
+                                    {% set id = id + 1 %}
+                                    <td>{{ id }}</td>
+                                    <td><a href="{{ path('car_show', {id : bill.idCar.id }) }}">{{ bill.idCar.type }}</a></td>
+                                    {% if clientFacture is not defined %}
+                                        <td>{{ bill.idUser.name }}</td>
+                                    {% endif %}
+                                    {% set difference = date(bill.endDate).diff(date(bill.startDate)) %}
+                                    <td>{{ difference.days+2 }}</td>
+                                    <td>{{ bill.idCar.amount }}€</td>
+                                    <td>{{ bill.price }}€</td>
+                                    {% set total = total + bill.price %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td {% if clientFacture is defined %}colspan="4" {% else %} colspan="5" {% endif%} class="text-end">Total</td>
+                                    <td>{{ total }}€</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="row mt-5">
+                        <div>Fait à Paris le {{ "now"|date("d/m/Y") }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

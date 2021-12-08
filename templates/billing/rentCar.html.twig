@@ -1,0 +1,20 @@
+{% extends 'car/showCar.html.twig' %}
+
+{% block title %}Louer une voiture{% endblock %}
+
+{% block rentForm %}
+    <div class="row justify-content-center pt-4">
+        <div class="col-lg-6 border border-dark p-2 rounded">
+            <h4 class="text-center">Paramétrez votre location :</h4>
+            {{ form_start(form) }}
+            <div class="d-flex justify-content-around">
+                {{ form_row(form.startDate, {'label': 'Date de début'}) }}
+                {{ form_row(form.endDate, {'label': 'Date de fin'}) }}
+            </div>
+            <div class="d-flex justify-content-end pt-2">
+                <input type="submit" class="btn btn-success" value="Louer !">
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

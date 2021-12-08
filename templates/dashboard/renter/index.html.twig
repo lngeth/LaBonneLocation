@@ -1,0 +1,82 @@
+{% extends('dashboard/index.html.twig') %}
+
+{% block content %}
+    <div>
+        <div class="container mt-5">
+            <div class="mt-2">
+                <h1>Bonjour {{ app.user.name }}</h1>
+                <p>Mon bilan personnel :</p>
+            </div>
+            <div class="mt-4">
+                <div class="row my-4">
+                    <div class="col-4">
+                        <div class="card bg-dark" style="max-width: 18rem;">
+                            <div class="card-body text-center">
+                                <a href="{{ path('showRentedCars') }}" class="text-decoration-none">
+                                    <div class="mx-auto">
+                                        <h6 class="text-white ">Nombre de voitures louées</h6>
+                                        <h2 class="text-white text-bold">{{ nbCarsRented }}</h2>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card bg-dark" style="max-width: 18rem;">
+                            <div class="card-body text-center">
+                                <a href="{{ path('show_owned_cars') }}" class="text-decoration-none">
+                                    <div class="mx-auto">
+                                        <h6 class="text-white ">Toutes mes voitures</h6>
+                                        <h2 class="text-white text-bold">{{ nbCars }}</h2>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card bg-dark" style="max-width: 18rem;">
+                            <div class="card-body text-center">
+                                <div class="mx-auto">
+                                    <h6 class="text-white ">Mes voitures disponibles</h6>
+                                    <h2 class="text-white text-bold">{{ carsAvailable }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-4">
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card bg-dark" style="max-width: 18rem;">
+                            <div class="card-body text-center">
+                                <div class="mx-auto">
+                                    <h6 class="text-white ">Montant totale des locations</h6>
+                                    <h2 class="text-white text-bold">{{ priceOfAllRent }}€</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card bg-dark" style="max-width: 18rem;">
+                            <div class="card-body text-center">
+                                <div class="mx-auto">
+                                    <h6 class="text-white ">Nombre de locations impayées</h6>
+                                    <h2 class="text-white text-bold">{{ unpaidBills }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card bg-dark" style="max-width: 18rem;">
+                            <div class="card-body text-center">
+                                <div class="mx-auto">
+                                    <h6 class="text-white ">Montant des locations du mois</h6>
+                                    <h2 class="text-white text-bold">{{ priceOfThisMonthRent }}€</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails{% endblock %}
+
+{% block body %}
+    <div style="margin-top: 80px" class="mb-5">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-5">
+                    <img src="{{ asset('assets/images/' ~ (car.image)) }}" class="img-fluid rounded-1" alt="image de {{ car.image }}">
+                </div>
+                <div class="col-lg-5">
+                    <h1 class="text-center">{{ car.type }}</h1>
+                    <div>
+                        <h2 class="bg-secondary py-1 ps-4" style="--bs-bg-opacity: .2;">Description</h2>
+                        <div class="py-2 container">
+                            <div class="row">
+                                <div class="col text-secondary">Energie :</div>
+                                <div class="col justify-content-center text-uppercase">{{ car.datasheet.motor }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-secondary">Boite de vitesse :</div>
+                                <div class="col justify-content-center text-uppercase">{{ car.datasheet.vitesse }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-secondary">Nombre de place :</div>
+                                <div class="col justify-content-center">{{ car.datasheet.nbSeat }}</div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col text-secondary">Prix journalier :</div>
+                                <div class="col justify-content-center"><strong>{{ car.amount }}€</strong>/jour</div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-secondary">Quantité disponible :</div>
+                                <div class="col justify-content-center">{{ car.quantity }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-secondary p-3" style="--bs-bg-opacity: .2;">
+                        <h3 class="ms-2 d-flex">Vendeur professionnel</h3>
+                        <div class="ps-4">
+                            <span><i>{{ renter.name }}</i></span><br>
+                            <span>Contact : {{ renter.email }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if app.user is not empty %}
+                {% block rentForm %}{% endblock %}
+            {% else %}
+                <div class="d-flex justify-content-center mt-4">
+                    Intéresser ? <a href="{{ path('security_login') }}">connectez-vous</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

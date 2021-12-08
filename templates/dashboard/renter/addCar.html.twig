@@ -1,0 +1,27 @@
+{% extends('dashboard/index.html.twig') %}
+{% block title %} Ajouter une voiture {% endblock %}
+{% block content %}
+    <h1 class="text-center my-3">Ajouter une voiture</h1>
+    {{ form_start(form) }}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.type, {'label': 'Type','attr': {'placeholder': 'exemple : Peugeot 206'}}) }}
+                {{ form_row(form.amount, {'label': 'Prix/jour'}) }}
+                {{ form_row(form.quantity, {'label': 'Nombre de voitures à disposer'}) }}
+                {{ form_row(form.motor, {'label' : 'Moteur'}) }}
+                {{ form_row(form.vitesse, {'label' : 'Boite de vitesse'}) }}
+                {{ form_row(form.nbSeat, {'label' : 'Nombre de siège'}) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.image, {'label': 'Image du véhicule'}) }}
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        <input type="submit" class="btn btn-lg btn-success mt-3" value="Créer mon annonce">
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}
